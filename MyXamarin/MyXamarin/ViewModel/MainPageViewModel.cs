@@ -61,7 +61,7 @@ namespace MyXamarin.ViewModel
             
             PageAppearingCommand = new Command(PageAppearing);
             PullToRefreshCommand = new Command(ExecutePullToRefreshCommand);
-            //LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
+            LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
         }
 
         private async void PageAppearing(object obj)
@@ -86,46 +86,16 @@ namespace MyXamarin.ViewModel
             
         }
 
-        public void ExecutePullToRefreshCommand()
+        public async void ExecutePullToRefreshCommand()
         {
             IsBusy = true;
 
             try
             {
-                if (Item != null)
-                {
-                    List<Item> it = new List<Item>()
-                    {
-                        new Item { Id = Guid.NewGuid().ToString(), Text = "New item 1", Description="This is an New item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
-                        new Item { Id = Guid.NewGuid().ToString(), Text = "New item 2", Description="This is an New item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
-                    };
+                Item = await DataStore.GetItemsAsyncList(true);
 
-                    foreach (var a in it)
-                    {
-                        Item.Add(a);
-                    }
-                    //item.AddRange(it);
-
-                    //item.Add(new Item { Id = Guid.NewGuid().ToString(), Text = "New item 1", Description = "This is an New item 1 description.", Uri = "https://homepages.cae.wisc.edu/~ece533/images/airplane.png" });
-
-                    //if(Item == null)
-                    //{
-                    //    Item = new List<Item>();
-                    //}
-
-                    //foreach (var item in this.repository)
-                    //{
-                    //    Item.Add(new Model.Item()
-                    //    {
-                    //        Id = item.Id,
-                    //        Text = item.Text,
-                    //        Description = item.Description,
-                    //        Uri = item.Uri
-                    //    }) ;
-                    //}
-
-                    IsRefreshing = false;
-                }
+                IsRefreshing = false;
+                IsBusy = false;
             }
             catch (Exception ex)
             {
@@ -154,7 +124,9 @@ namespace MyXamarin.ViewModel
 
                     Item.AddRange(it);
 
+
                     IsRefreshing = false;
+                    IsBusy = false;
                 }
             }
             catch (Exception ex)
