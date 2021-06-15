@@ -1,7 +1,5 @@
 # MyXamarin
-Hi Dev Express
-
-This is my github -> https://github.com/pi314267/MyXamarin
+Hi
 
 I want to pull the screen down to refresh the data, and pull the screen up to load the old data. But it has a bit of a problem.
 
