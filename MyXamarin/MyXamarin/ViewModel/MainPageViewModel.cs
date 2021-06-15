@@ -152,15 +152,6 @@ namespace MyXamarin.ViewModel
 
                     Items = data;
 
-                    //Items.AddRange(it);
-                    //List<ItemData> itemDatas = new List<ItemData>();
-                    //itemDatas.Add()
-
-                    //Items.Add()
-
-
-
-
                     IsRefreshing = false;
                     IsBusy = false;
                 }
