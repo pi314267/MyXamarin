@@ -59,7 +59,7 @@ namespace MyXamarin.ViewModel
         {
             PageAppearingCommand = new Command(PageAppearing);
             PullToRefreshCommand = new Command(ExecutePullToRefreshCommand);
-            LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
+            //LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
         }
 
         private async void PageAppearing(object obj)
