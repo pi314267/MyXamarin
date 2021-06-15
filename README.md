@@ -1,10 +1,15 @@
 # MyXamarin
-Hi This is Made by DevExpress UI(DXCollectionView)
-Actually I want to pull the screen down to get new data, and pull the screen up to load new data.
-But It has Some Error.
+Hi Dev Express
 
-I can't find the exact cause of the error.
+This is my github -> https://github.com/pi314267/MyXamarin
 
-If you use Xamarin And DexExpress UI, Please Commants here.
-It will be helpful to me.
+I want to pull the screen down to refresh the data, and pull the screen up to load the old data. But it has a bit of a problem.
+
+When the screen is pulled down, new data should be viewed at the bottom, but new data is being created at the top.
+
+I know this may not be a "Devexpress" issue.
+
+But I'm so frustrated that as a user of DevExpress, I want to help.
+
+You may or may not respond, but please help.
 
