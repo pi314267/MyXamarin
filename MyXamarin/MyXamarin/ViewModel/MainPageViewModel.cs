@@ -124,7 +124,7 @@ namespace MyXamarin.ViewModel
                     //    }) ;
                     //}
 
-                    IsRefreshing = false;
+                    
                 }
             }
             catch (Exception ex)
@@ -134,6 +134,7 @@ namespace MyXamarin.ViewModel
             }
             finally
             {
+                IsRefreshing = false;
                 IsBusy = false;
             }
         }
@@ -153,7 +154,7 @@ namespace MyXamarin.ViewModel
 
                     Item.AddRange(it);
 
-                    IsRefreshing = false;
+                    
                 }
             }
             catch (Exception ex)
@@ -163,6 +164,7 @@ namespace MyXamarin.ViewModel
             }
             finally
             {
+                IsRefreshing = false;
                 IsBusy = false;
             }
         }
