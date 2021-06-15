@@ -15,7 +15,7 @@
         <!--https://github.com/DevExpress-Examples/xamarin-forms-collection-view-examples/blob/20.2.4%2B/CS/LoadMore/CollectionView_LoadMore/MainPage.xaml-->
         <dxcv:DXCollectionView x:Name="collectionView" 
                                IsPullToRefreshEnabled="True"
-                               ItemsSource="{Binding Item, Mode=TwoWay}"
+                               ItemsSource="{Binding Items, Mode=TwoWay}"
                                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                                IsLoadMoreEnabled="True"
                                LoadMoreCommand="{Binding LoadMoreCommand}"

@@ -22,8 +22,11 @@ namespace MyXamarin.Service
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an 6 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
                 new Item { Id = Guid.NewGuid().ToString(), Text = "7 item", Description="This is an 7 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
                 new Item { Id = Guid.NewGuid().ToString(), Text = "8 item", Description="This is an 8 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "9 item", Description="This is an 9 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"}
-                
+                new Item { Id = Guid.NewGuid().ToString(), Text = "9 item", Description="This is an 9 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "10 item", Description="This is an 10 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "11 item", Description="This is an 11 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "11 item", Description="This is an 11 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/girl.png"}
+
 
             };
         }

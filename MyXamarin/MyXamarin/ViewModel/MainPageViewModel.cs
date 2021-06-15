@@ -6,20 +6,24 @@ using System.Windows.Input;
 using MyXamarin.Model;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MyXamarin.ViewModel
 {
     public class MainPageViewModel : BaseViewModel
     {
-        //private List<Item> repository;
-        private List<Item> item;
+        //ItemData data;
 
-        public List<Item> Item
+        private List<Item> data;
+        //private List<Item> repository;
+        private List<Item> items;
+
+        public List<Item> Items
         {
-            get { return item; }
+            get { return items; }
             set
             {
-                SetProperty(ref item, value);
+                SetProperty(ref items, value);
             }
         }
 
@@ -58,10 +62,18 @@ namespace MyXamarin.ViewModel
         public ICommand LoadMoreCommand { protected set; get; }
         public MainPageViewModel()
         {
-            
+             
+
             PageAppearingCommand = new Command(PageAppearing);
             PullToRefreshCommand = new Command(ExecutePullToRefreshCommand);
             LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
+
+            //this.data = new ItemData();
+            //for (int i = 0;i< Items.Count;i++)
+            //{
+            //    data.Items.Add(items[i]);
+            //}
+
         }
 
         private async void PageAppearing(object obj)
@@ -70,9 +82,12 @@ namespace MyXamarin.ViewModel
             try
             {
                 
-                Item = await DataStore.GetItemsAsyncList(true);
+                Items = await DataStore.GetItemsAsyncList(true);
                 //this.repository = Item;
                 //IsRefreshing = false;
+                //this.data = Items;
+                //data = Items.ToList();
+
                 IsBusy = false;
             }
             catch (Exception ex)
@@ -92,7 +107,7 @@ namespace MyXamarin.ViewModel
 
             try
             {
-                Item = await DataStore.GetItemsAsyncList(true);
+                Items = await DataStore.GetItemsAsyncList(true);
 
                 IsRefreshing = false;
                 IsBusy = false;
@@ -115,14 +130,35 @@ namespace MyXamarin.ViewModel
 
             try
             {
-                if (Item != null)
+                if (Items != null)
                 {
+
+                    this.data = new List<Item>();
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        data.Add(Items[i]);
+                    }
+
                     List<Item> it = new List<Item>(){
                     new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
                     new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
                     };
 
-                    Item.AddRange(it);
+
+                    for (int i = 0; i < it.Count; i++)
+                    {
+                        data.Add(it[i]);
+                    }
+
+                    Items = data;
+
+                    //Items.AddRange(it);
+                    //List<ItemData> itemDatas = new List<ItemData>();
+                    //itemDatas.Add()
+
+                    //Items.Add()
+
+
 
 
                     IsRefreshing = false;
