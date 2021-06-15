@@ -11,6 +11,7 @@ namespace MyXamarin.ViewModel
 {
     public class MainPageViewModel : BaseViewModel
     {
+        private List<Item> repository;
         private List<Item> item;
 
         public List<Item> Item
@@ -57,6 +58,7 @@ namespace MyXamarin.ViewModel
         public ICommand LoadMoreCommand { protected set; get; }
         public MainPageViewModel()
         {
+            
             PageAppearingCommand = new Command(PageAppearing);
             PullToRefreshCommand = new Command(ExecutePullToRefreshCommand);
             //LoadMoreCommand = new Command(ExecuteLoadMoreCommand);
@@ -69,7 +71,7 @@ namespace MyXamarin.ViewModel
             {
                 
                 Item = await DataStore.GetItemsAsyncList(true);
-
+                this.repository = Item;
                 //IsRefreshing = false;
                 IsBusy = false;
             }
@@ -90,16 +92,40 @@ namespace MyXamarin.ViewModel
 
             try
             {
-                List<Item> it = new List<Item>()
+                if (Item != null)
                 {
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "9 item", Description="This is an 7 item description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "10 item", Description="This is an 8 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"},
-                };
+                    List<Item> it = new List<Item>()
+                    {
+                        new Item { Id = Guid.NewGuid().ToString(), Text = "New item 1", Description="This is an New item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
+                        new Item { Id = Guid.NewGuid().ToString(), Text = "New item 2", Description="This is an New item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
+                    };
 
-                item.AddRange(it);
+                    foreach (var a in it)
+                    {
+                        Item.Add(a);
+                    }
+                    //item.AddRange(it);
 
-                IsRefreshing = false;
+                    //item.Add(new Item { Id = Guid.NewGuid().ToString(), Text = "New item 1", Description = "This is an New item 1 description.", Uri = "https://homepages.cae.wisc.edu/~ece533/images/airplane.png" });
 
+                    //if(Item == null)
+                    //{
+                    //    Item = new List<Item>();
+                    //}
+
+                    //foreach (var item in this.repository)
+                    //{
+                    //    Item.Add(new Model.Item()
+                    //    {
+                    //        Id = item.Id,
+                    //        Text = item.Text,
+                    //        Description = item.Description,
+                    //        Uri = item.Uri
+                    //    }) ;
+                    //}
+
+                    IsRefreshing = false;
+                }
             }
             catch (Exception ex)
             {
@@ -118,16 +144,17 @@ namespace MyXamarin.ViewModel
 
             try
             {
-                List<Item> it = new List<Item>()
+                if (Item != null)
                 {
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "7 item", Description="This is an 7 item description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "8 item", Description="This is an 8 item description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"},
-                };
+                    List<Item> it = new List<Item>(){
+                    new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
+                    new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
+                    };
 
-                item.AddRange(it);
+                    Item.AddRange(it);
 
-                IsRefreshing = false;
-
+                    IsRefreshing = false;
+                }
             }
             catch (Exception ex)
             {

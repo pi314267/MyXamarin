@@ -1,4 +1,5 @@
-﻿using MyXamarin.ViewModel;
+﻿using MyXamarin.Model;
+using MyXamarin.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
