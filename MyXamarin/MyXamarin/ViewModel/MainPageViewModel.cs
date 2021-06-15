@@ -11,7 +11,7 @@ namespace MyXamarin.ViewModel
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private List<Item> repository;
+        //private List<Item> repository;
         private List<Item> item;
 
         public List<Item> Item
@@ -71,7 +71,7 @@ namespace MyXamarin.ViewModel
             {
                 
                 Item = await DataStore.GetItemsAsyncList(true);
-                this.repository = Item;
+                //this.repository = Item;
                 //IsRefreshing = false;
                 IsBusy = false;
             }
@@ -124,7 +124,7 @@ namespace MyXamarin.ViewModel
                     //    }) ;
                     //}
 
-                    
+                    IsRefreshing = false;
                 }
             }
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace MyXamarin.ViewModel
 
                     Item.AddRange(it);
 
-                    
+                    IsRefreshing = false;
                 }
             }
             catch (Exception ex)
