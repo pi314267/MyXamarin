@@ -140,8 +140,8 @@ namespace MyXamarin.ViewModel
                     }
 
                     List<Item> it = new List<Item>(){
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
-                    new Item { Id = Guid.NewGuid().ToString(), Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
+                    new Item { Id = "001", Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
+                    new Item { Id = "002", Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
                     };
 
 
