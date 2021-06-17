@@ -1,6 +1,7 @@
 ﻿using MyXamarin.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,7 +80,11 @@ namespace MyXamarin.Service
 
         public async Task<List<Item>> GetItemsAsyncList(bool forceRefresh = false)
         {
-            return items.OrderByDescending(x => x.Id).AsEnumerable().ToList();
+            #region AS-IS
+            //return items.AsEnumerable().OrderByDescending(x => x.Id).ToList();
+            #endregion
+
+            return items.AsEnumerable().ToList();
         }
     }
 }

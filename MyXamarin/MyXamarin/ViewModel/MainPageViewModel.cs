@@ -7,6 +7,8 @@ using MyXamarin.Model;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace MyXamarin.ViewModel
 {
@@ -16,9 +18,10 @@ namespace MyXamarin.ViewModel
 
         private List<Item> data;
         //private List<Item> repository;
-        private List<Item> items;
+        //private List<Item> items;
 
-        public List<Item> Items
+        private ObservableCollection<Item> items;
+        public ObservableCollection<Item> Items
         {
             get { return items; }
             set
@@ -81,12 +84,12 @@ namespace MyXamarin.ViewModel
             IsBusy = true;
             try
             {
-                
-                Items = await DataStore.GetItemsAsyncList(true);
-                //this.repository = Item;
-                //IsRefreshing = false;
-                //this.data = Items;
-                //data = Items.ToList();
+
+                //Items = await DataStore.GetItemsAsyncList(true);
+                var t = new ObservableCollection<Item>();
+                List<Item> a = await DataStore.GetItemsAsyncList(true);
+                a.ForEach(x => t.Add(x));
+                Items = t;
 
                 IsBusy = false;
             }
@@ -107,7 +110,12 @@ namespace MyXamarin.ViewModel
 
             try
             {
-                Items = await DataStore.GetItemsAsyncList(true);
+                var t = new ObservableCollection<Item>();
+                List<Item> a = await DataStore.GetItemsAsyncList(true);
+                a.ForEach(x => t.Add(x));
+                Items = t;
+
+                //Items = a.ForEach(x => Items.Add(x));
 
                 IsRefreshing = false;
                 IsBusy = false;
@@ -133,24 +141,39 @@ namespace MyXamarin.ViewModel
                 if (Items != null)
                 {
 
-                    this.data = new List<Item>();
-                    for (int i = 0; i < Items.Count; i++)
-                    {
-                        data.Add(Items[i]);
-                    }
+                    #region AS-IS Source
+                    //this.data = new List<Item>();
+                    //for (int i = 0; i < Items.Count; i++)
+                    //{
+                    //    data.Add(Items[i]);
+                    //}
+
+                    //List<Item> it = new List<Item>(){
+                    //new Item { Id = "001", Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
+                    //new Item { Id = "002", Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
+                    //};
+
+
+                    //for (int i = 0; i < it.Count; i++)
+                    //{
+                    //    data.Add(it[i]);
+                    //}
+
+                    //Items = data;
+                    #endregion
+
+
 
                     List<Item> it = new List<Item>(){
                     new Item { Id = "001", Text = "Old item 1", Description="This is an Old item 1 description.", Uri="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" },
                     new Item { Id = "002", Text = "Old item 2", Description="This is an Old item 2 description.", Uri= "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png"}
                     };
 
-
                     for (int i = 0; i < it.Count; i++)
                     {
-                        data.Add(it[i]);
+                        Items.Add(it[i]);
                     }
-
-                    Items = data;
+                    
 
                     IsRefreshing = false;
                     IsBusy = false;
